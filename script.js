@@ -219,94 +219,6 @@ function validBraces(braces) {
   return tracer.length === 0;
 }
 
-// Santa wish list form in ReactJS
-const React = require('react');
-
-class WishlistForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { name: '', wish: '', priority: 1 };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleWishChange = this.handleWishChange.bind(this);
-    this.handlePriorityChange = this.handlePriorityChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleNameChange(e) {
-    this.setState({ name: e.target.value });
-  }
-
-  handleWishChange(e) {
-    this.setState({ wish: e.target.value });
-  }
-
-  handlePriorityChange(e) {
-    this.setState({ priority: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.send(this.state);
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          id='name'
-          value={this.state.name}
-          onChange={this.handleNameChange}
-        />
-        <textarea
-          id='wish'
-          value={this.state.wish}
-          onChange={this.handleWishChange}
-        />
-        <select
-          value={this.state.priority}
-          id='priority'
-          onChange={this.handlePriorityChange}
-        >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-      </form>
-    );
-  }
-}
-
-// Control the Beast (controlled components in ReactJS)
-const React = require('react');
-
-class Beast extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: props.name === undefined ? 'Yeti' : props.name,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  render() {
-    return (
-      <input
-        type='text'
-        value={this.state.name}
-        onChange={this.handleChange}
-        id='controlledName'
-      />
-    );
-  }
-}
-
 // Find the Order Breaker
 function orderBreaker(input) {
   for (let i = 0; i < input.length; i++) {
@@ -451,3 +363,34 @@ function sumIntervals(intervals) {
 
   return sum;
 }
+
+// Object extend
+const extend = (...objects) => {
+  let entries = objects
+    .filter(obj => obj instanceof Object)
+    .map(obj => Object.entries(obj));
+
+  const filterEntries = entries => {
+    const newEntries = entries
+      .reduce((prev, cur) => prev.concat(cur), [])
+      .sort((prev, next) =>
+        prev[0] === next[0] ? 0 : prev[0] < next[0] ? -1 : 1
+      );
+
+    for (let i = 0; i < newEntries.length - 1; i++) {
+      newEntries[i + 1][0] === newEntries[i][0] &&
+        newEntries.splice(newEntries.indexOf(newEntries[i + 1]), 1);
+    }
+
+    return newEntries;
+  };
+
+  entries = filterEntries(entries);
+
+  const object = entries.reduce(
+    (obj, [key, value]) => ({ ...obj, [key]: value }),
+    {}
+  );
+
+  return object;
+};
