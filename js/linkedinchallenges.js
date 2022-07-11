@@ -5,25 +5,17 @@ const addFive = x => x + 5;
 
 const arrayOfFunctions = [double, subtractTwenty, triple, addFive, Math.abs];
 
-const initialValue = 3;
-let result = initialValue;
+const calcResultOfAllEquations = (array, initialValue) =>
+  array.reduce((acc, func) => func(acc), initialValue);
 
-arrayOfFunctions.forEach(func => (result = func(result)));
+console.log(calcResultOfAllEquations(arrayOfFunctions, 0));
+console.log(calcResultOfAllEquations(arrayOfFunctions, 3));
 
-console.log(result);
-
-const calcResultOfAllEquations = (arr, initialValue) =>
-  arr.reduce((acc, func) => func(acc), initialValue);
-
-result = calcResultOfAllEquations(arrayOfFunctions, initialValue);
-
-console.log(result);
-
-const arrOfWords = ['bike', 'backpack', 'destination', 'lake'];
+const arrayOfWords = ['bike', 'backpack', 'destination', 'lake'];
 
 const testLength = minLength => word => word.length > minLength;
 
-const longWords = arrOfWords.filter(testLength(5));
+const longWords = arrayOfWords.filter(testLength(5));
 
 console.log(longWords);
 
@@ -82,8 +74,6 @@ const currentInputValues = {
   zipCode: '2103',
   city: 'Vinnytsia',
 };
-
-console.log(inputCriteria(currentInputValues));
 
 const getErrorMessages = (inputs, criteria) =>
   Object.values(criteria(inputs)).filter(value => value);
