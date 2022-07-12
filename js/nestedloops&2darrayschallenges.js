@@ -1,33 +1,22 @@
-console.log('Loop start');
+const emulateTriangleOfArrays = () => {
+  const mainArray = [];
 
-for (let i = 1; i <= 3; i++) {
-  for (let j = 1; j <= 3; j++) {
-    console.log(i, j);
+  for (let i = 0; i < 10; i++) {
+    const subArray = [];
+
+    for (let j = i; j >= 0; j--) {
+      subArray.push(j);
+    }
+
+    mainArray.push(subArray);
   }
-  console.log('End of iteration', i);
-}
 
-console.log('Loop finish');
-console.log('Loop start');
+  return mainArray;
+};
 
-for (let i = 1; i <= 3; i++) {
-  for (let j = i; j <= 3; j++) {
-    console.log(i, j);
-  }
-  console.log('End of iteration', i);
-}
+const triangleOfArrays = emulateTriangleOfArrays();
 
-console.log('Loop finish');
-console.log('Loop start');
-
-for (let i = 1; i <= 3; i++) {
-  for (let j = i; j > 0; j--) {
-    console.log(i, j);
-  }
-  console.log('End of iteration', i);
-}
-
-console.log('Loop finish');
+console.log(triangleOfArrays);
 
 const countLuckyTicketsInARange = () => {
   let luckyTicketsCount = 0;
@@ -54,26 +43,6 @@ const countLuckyTicketsInARange = () => {
 console.log(
   `There are ${countLuckyTicketsInARange()} lucky tickets in the range from 000000 to 999999.`
 );
-
-const emulateTriangleOfArrays = () => {
-  const mainArray = [];
-
-  for (let i = 0; i < 10; i++) {
-    const subArray = [];
-
-    for (let j = i; j >= 0; j--) {
-      subArray.push(j);
-    }
-
-    mainArray.push(subArray);
-  }
-
-  return mainArray;
-};
-
-const triangleOfArrays = emulateTriangleOfArrays();
-
-console.log(triangleOfArrays);
 
 const findCharacters = (string, charsToSearch) => {
   for (let i = 0; i < string.length; i++) {
