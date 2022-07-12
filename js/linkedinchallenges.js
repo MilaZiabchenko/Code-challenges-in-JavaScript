@@ -1,3 +1,6 @@
+// Challenge 1:
+
+// Calculate result of multiple equations
 const double = x => x * 2;
 const subtractTwenty = x => x - 20;
 const triple = x => x * 3;
@@ -11,14 +14,22 @@ const calcResultOfAllEquations = (array, initialValue) =>
 console.log(calcResultOfAllEquations(arrayOfFunctions, 0));
 console.log(calcResultOfAllEquations(arrayOfFunctions, 3));
 
-const arrayOfWords = ['bike', 'backpack', 'destination', 'lake'];
+// Challenge 2:
 
-const testLength = minLength => word => word.length > minLength;
+// Test words' length
+const arrayOfWords = ['bike', 'backpack', 'destination', 'lake', 'squirrels', 'sophisticated', 'resilience'];
 
-const longWords = arrayOfWords.filter(testLength(5));
+const testLength = minLength => word => word.length >= minLength;
 
+const mediumAndLongWords = arrayOfWords.filter(testLength(5));
+const longWords = arrayOfWords.filter(testLength(10));
+
+console.log(mediumAndLongWords);
 console.log(longWords);
 
+// Challenge 3:
+
+// Find anagrams
 const countOccurrences = word =>
   word.reduce(
     (acc, char) => ({ ...acc, [char]: acc[char] ? acc[char] + 1 : 1 }),
@@ -49,6 +60,9 @@ console.log(findAnagrams('cinema', words));
 console.log(findAnagrams('doom', words));
 console.log(findAnagrams('file', words));
 
+// Challenge 4:
+
+// Validate form fields and generate error messages
 const validateFirstName = name =>
   name.length >= 2 ? '' : 'First name must be at least 2 chars long';
 
